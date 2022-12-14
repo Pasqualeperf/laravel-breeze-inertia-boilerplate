@@ -1,4 +1,4 @@
-import GuestLayout from '@/Layouts/GuestLayout';
+import LayoutApp from '@/Layouts/LayoutApp';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
@@ -20,7 +20,7 @@ export default function ForgotPassword({ status }) {
     };
 
     return (
-        <GuestLayout>
+        <LayoutApp>
             <Head title="Forgot Password" />
 
             <div className="mb-4 text-sm text-gray-600">
@@ -49,6 +49,6 @@ export default function ForgotPassword({ status }) {
                     </PrimaryButton>
                 </div>
             </form>
-        </GuestLayout>
+        </LayoutApp>
     );
 }
