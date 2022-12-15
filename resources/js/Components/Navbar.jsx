@@ -100,8 +100,8 @@ export default function NavbarNew({auth}) {
                 </>
                 ) : (
                     <>
-                        <NavLink active={route().current('login')} href={route('login')} children="login"/>
-                        <NavLink active={route().current('register')} href={route('register')} children="register"/>
+                        <NavLink active={route().current('login')} href={route('login')} children="Login"/>
+                        <NavLink active={route().current('register')} href={route('register')} children="Register"/>
                     </>
                 )}
                 </Menu>
