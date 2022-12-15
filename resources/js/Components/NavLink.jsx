@@ -1,9 +1,10 @@
 import { usePage, Link } from '@inertiajs/inertia-react';
 
-export default function NavLink({ href, active, children }) {
+export default function NavLink({ href, active, children, method }) {
 
     return (
         <Link
+            method={method}
             preserveState
             href={href}
             className={

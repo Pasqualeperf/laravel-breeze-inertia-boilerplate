@@ -1,7 +1,8 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import NavLink from '@/Components/NavLink';
+import ProfileLinks from './ProfileLinks';
 
 const navigation = [
   { name: 'Dashboard', href: route('homepage'), current: route().current() },
@@ -73,7 +74,7 @@ export default function NavbarNew({auth}) {
                         <span className="sr-only">Open user menu</span>
                         <img
                             className="h-8 w-8 rounded-full"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            src={"https://ui-avatars.com/api/?name="+auth.user.name+auth.user.surname+"?rounded=true"}
                             alt=""
                         />
                         </Menu.Button>
@@ -89,24 +90,10 @@ export default function NavbarNew({auth}) {
                     >
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <Menu.Item>
-                                {({ active }) => (
-                                <a
-                                    href={route('profile.edit')}
-                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                >
-                                    Profile
-                                </a>
-                                )}
+                              <ProfileLinks active={route().current('profile.edit')} href={route('profile.edit')} children="Profile" />
                             </Menu.Item>
                             <Menu.Item>
-                                {({ active }) => (
-                                <a
-                                    href={route('logout')}
-                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                >
-                                    Logout
-                                </a>
-                                )}
+                                <ProfileLinks active={route().current('login')} href={route('logout')} method="post" as="button" children="Logout" />
                             </Menu.Item>
                         </Menu.Items>
                     </Transition>
@@ -122,7 +109,7 @@ export default function NavbarNew({auth}) {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          <Disclosure.Panel>
             <div className="space-y-1 px-2 pt-2 pb-3">
               {navigation.map((item) => (
                 <Disclosure.Button
