@@ -4,7 +4,7 @@ export default function LayoutApp({ auth, header, children }) {
 
     return (
         <>
-            <Navbar auth={auth}/>
+            <Navbar auth={auth} />
             <div className="min-h-screen bg-gray-100">
 
                 {header && (

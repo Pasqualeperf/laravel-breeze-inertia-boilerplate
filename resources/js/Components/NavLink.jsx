@@ -1,5 +1,4 @@
 import { usePage, Link } from '@inertiajs/inertia-react';
-import { useState } from 'react';
 
 export default function NavLink({ href, active, children }) {
 
