@@ -74,7 +74,7 @@ export default function NavbarNew({auth}) {
                         <span className="sr-only">Open user menu</span>
                         <img
                             className="h-8 w-8 rounded-full"
-                            src={"https://ui-avatars.com/api/?name="+auth.user.name+auth.user.surname+"?rounded=true"}
+                            src={auth.user.avatar ? '/storage/avatars/'+auth.user.avatar : "https://ui-avatars.com/api/?name="+auth.user.name+auth.user.surname+"?rounded=true"}
                             alt=""
                         />
                         </Menu.Button>
@@ -93,7 +93,7 @@ export default function NavbarNew({auth}) {
                               <ProfileLinks active={route().current('profile.edit')} href={route('profile.edit')} children="Profile" />
                             </Menu.Item>
                             <Menu.Item>
-                                <ProfileLinks active={route().current('login')} href={route('logout')} method="post" as="button" children="Logout" />
+                                <ProfileLinks active={route().current('login')} href={route('logout')} method="post" children="Logout" />
                             </Menu.Item>
                         </Menu.Items>
                     </Transition>

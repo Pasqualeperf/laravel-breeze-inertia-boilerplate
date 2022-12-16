@@ -2,22 +2,31 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
+import FileInput from '@/Components/FileInput';
 import { Link, useForm, usePage } from '@inertiajs/inertia-react';
 import { Transition } from '@headlessui/react';
+import { useState } from 'react';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className }) {
     const user = usePage().props.auth.user;
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
+    const [avatar, setAvatar] = useState(user.avatar);
+
+    const { data, setData, post, errors, processing, recentlySuccessful } = useForm({
         name: user.name,
         email: user.email,
+        avatar: undefined
     });
 
     const submit = (e) => {
         e.preventDefault();
-
-        patch(route('profile.update'));
+        post(route('profile.update'));
     };
+
+    const changeAvatar = (e) => {
+        setAvatar(URL.createObjectURL(e.target.files[0]));
+        setData('avatar', e.target.files[0]);
+    }
 
     return (
         <section className={className}>
@@ -29,7 +38,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 </p>
             </header>
 
-            <form onSubmit={submit} className="mt-6 space-y-6">
+            <form encType='multipart/form-data' onSubmit={submit} className="mt-6 space-y-6">
                 <div>
                     <InputLabel for="name" value="Name" />
 
@@ -60,6 +69,29 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                     />
 
                     <InputError className="mt-2" message={errors.email} />
+                </div>
+
+                <div className='flex flex-col md:flex-row items-center'>
+                    <div>
+                        <InputLabel value="Avatar" />
+                        <FileInput
+                            id="avatar"
+                            name="avatar"
+                            type="file"
+                            className="mt-1 block w-full"
+                            handleChange={(e) => changeAvatar(e)}
+                            required
+                        />
+                        <InputError className="mt-2" message={errors.email} />
+                    </div>
+
+                    <div className="avatar-cont mt-6 md:mt-0 py-2">
+                        <img
+                            className="h-20 w-20 rounded-full"
+                            src={avatar ? '/storage/avatars/'+avatar : "https://ui-avatars.com/api/?name="+user.name+user.surname+"?rounded=true"}
+                            alt=""
+                        />
+                    </div>
                 </div>
 
                 {mustVerifyEmail && user.email_verified_at === null && (

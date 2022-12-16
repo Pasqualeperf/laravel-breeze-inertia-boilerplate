@@ -1,5 +1,5 @@
 import LayoutApp from '@/Layouts/LayoutApp';
-import { Link, Head } from '@inertiajs/inertia-react';
+import { Head } from '@inertiajs/inertia-react';
 
 const Homepage = (props) => {
     return (
@@ -9,17 +9,17 @@ const Homepage = (props) => {
             <h1>Homepage</h1>
             <div className="cards-container min-h-screen flex flex-col md:flex-row items-center justify-center max-w-md py-8 md:py-3 space-y-9 md:space-y-0 md:space-x-6 mx-auto">
                 {/* Cards 1 */}
-                <div class="max-w-xs rounded overflow-hidden shadow-lg">
-                    <img class="w-full" src="https://picsum.photos/300/300" alt="Sunset in the mountains"/>
-                    <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+                <div className="max-w-xs rounded overflow-hidden shadow-lg">
+                    <img className="w-full" src="https://picsum.photos/300/300" alt="Sunset in the mountains"/>
+                    <div className="px-6 py-4">
+                        <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
                     </div>
                 </div>
                 {/* Cards 2 */}
-                <div class="max-w-xs rounded overflow-hidden shadow-lg">
-                    <img class="w-full" src="https://picsum.photos/300/300" alt="Sunset in the mountains"/>
-                    <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+                <div className="max-w-xs rounded overflow-hidden shadow-lg">
+                    <img className="w-full" src="https://picsum.photos/300/300" alt="Sunset in the mountains"/>
+                    <div className="px-6 py-4">
+                        <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
                     </div>
                 </div>
             </div>
