@@ -5,12 +5,17 @@ import TextInput from '@/Components/TextInput';
 import FileInput from '@/Components/FileInput';
 import { Link, useForm, usePage } from '@inertiajs/inertia-react';
 import { Transition } from '@headlessui/react';
-import { useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className }) {
     const user = usePage().props.auth.user;
 
-    const [avatar, setAvatar] = useState(user.avatar);
+    const imageRef = useRef();
+    const [avatar, setAvatar] = useState('');
+
+    useEffect(() => {
+        imageRef.current.src = user.avatar ? '/storage/avatars/'+user.avatar : "https://ui-avatars.com/api/?name="+user.name+user.surname+"?rounded=true";
+    }, [])
 
     const { data, setData, post, errors, processing, recentlySuccessful } = useForm({
         name: user.name,
@@ -87,8 +92,9 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
                     <div className="avatar-cont mt-6 md:mt-0 py-2">
                         <img
+                            src={avatar}
+                            ref={imageRef}
                             className="h-20 w-20 rounded-full"
-                            src={avatar ? '/storage/avatars/'+avatar : "https://ui-avatars.com/api/?name="+user.name+user.surname+"?rounded=true"}
                             alt=""
                         />
                     </div>
